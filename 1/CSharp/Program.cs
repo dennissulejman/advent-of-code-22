@@ -1,6 +1,6 @@
-﻿string inputFileName = @"..\input.txt";
+string inputFileName = @"..\input.txt";
 
-using StreamReader reader = new StreamReader(inputFileName);
+using StreamReader reader = new(inputFileName);
 
 string? currentLine;
 int highestAmountOfCaloriesCarriedByElf = 0;
