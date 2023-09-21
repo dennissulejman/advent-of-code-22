@@ -1,26 +1,35 @@
 ﻿string inputFileName = @"..\input.txt";
 
-using StreamReader reader = new StreamReader(inputFileName);
+List<int> amountOfCaloriesCarriedByElves = new();
 
-string? currentLine;
-int highestAmountOfCaloriesCarriedByElf = 0;
 int amountOfCaloriesCarriedByCurrentElf = 0;
-
-while ((currentLine = reader.ReadLine()) is not null)
+foreach (string line in File.ReadLines(inputFileName))
 {
-    if (string.IsNullOrWhiteSpace(currentLine))
+    if (string.IsNullOrWhiteSpace(line))
     {
-        highestAmountOfCaloriesCarriedByElf =
-            amountOfCaloriesCarriedByCurrentElf > highestAmountOfCaloriesCarriedByElf
-                ? amountOfCaloriesCarriedByCurrentElf
-                : highestAmountOfCaloriesCarriedByElf;
-
+        amountOfCaloriesCarriedByElves.Add(amountOfCaloriesCarriedByCurrentElf);
         amountOfCaloriesCarriedByCurrentElf = 0;
     }
     else
     {
-        amountOfCaloriesCarriedByCurrentElf += int.Parse(currentLine!);
+        amountOfCaloriesCarriedByCurrentElf += int.Parse(line);
     }
 }
 
+// The last line is a number and not whitespace so the last value needs to be added after the enumeration
+amountOfCaloriesCarriedByElves.Add(amountOfCaloriesCarriedByCurrentElf);
+
+IEnumerable<int> topThreeAmountOfCaloriesCarriedByElves = amountOfCaloriesCarriedByElves
+    .OrderByDescending(amount => amount)
+    .Take(3);
+
+int highestAmountOfCaloriesCarriedByElf = topThreeAmountOfCaloriesCarriedByElves.ElementAt(0);
+int sumOfTopThreeAmountOfCaloriesCarriedByElves = topThreeAmountOfCaloriesCarriedByElves.Sum(
+    amount => amount
+);
+
+// Part 1
 Console.WriteLine(highestAmountOfCaloriesCarriedByElf);
+
+// Part 2
+Console.WriteLine(sumOfTopThreeAmountOfCaloriesCarriedByElves);
