@@ -1,26 +1,26 @@
 string inputFileName = @"..\input.txt";
 
-using StreamReader reader = new(inputFileName);
+List<int> amountOfCaloriesCarriedByElves = new();
 
-string? currentLine;
-int highestAmountOfCaloriesCarriedByElf = 0;
 int amountOfCaloriesCarriedByCurrentElf = 0;
-
-while ((currentLine = reader.ReadLine()) is not null)
+foreach (string line in File.ReadLines(inputFileName))
 {
-    if (string.IsNullOrWhiteSpace(currentLine))
+    if (string.IsNullOrWhiteSpace(line))
     {
-        highestAmountOfCaloriesCarriedByElf =
-            amountOfCaloriesCarriedByCurrentElf > highestAmountOfCaloriesCarriedByElf
-                ? amountOfCaloriesCarriedByCurrentElf
-                : highestAmountOfCaloriesCarriedByElf;
-
+        amountOfCaloriesCarriedByElves.Add(amountOfCaloriesCarriedByCurrentElf);
         amountOfCaloriesCarriedByCurrentElf = 0;
     }
     else
     {
-        amountOfCaloriesCarriedByCurrentElf += int.Parse(currentLine!);
+        amountOfCaloriesCarriedByCurrentElf += int.Parse(line);
     }
 }
+
+// The last line is a number and not whitespace so the last value needs to be added after the enumeration
+amountOfCaloriesCarriedByElves.Add(amountOfCaloriesCarriedByCurrentElf);
+
+int highestAmountOfCaloriesCarriedByElf = amountOfCaloriesCarriedByElves
+    .OrderByDescending(amount => amount)
+    .ElementAt(0);
 
 Console.WriteLine(highestAmountOfCaloriesCarriedByElf);
