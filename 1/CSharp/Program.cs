@@ -1,4 +1,4 @@
-string inputFileName = @"..\input.txt";
+﻿string inputFileName = @"..\input.txt";
 
 List<int> amountOfCaloriesCarriedByElves = new();
 
@@ -19,8 +19,17 @@ foreach (string line in File.ReadLines(inputFileName))
 // The last line is a number and not whitespace so the last value needs to be added after the enumeration
 amountOfCaloriesCarriedByElves.Add(amountOfCaloriesCarriedByCurrentElf);
 
-int highestAmountOfCaloriesCarriedByElf = amountOfCaloriesCarriedByElves
+IEnumerable<int> topThreeAmountOfCaloriesCarriedByElves = amountOfCaloriesCarriedByElves
     .OrderByDescending(amount => amount)
-    .ElementAt(0);
+    .Take(3);
 
+int highestAmountOfCaloriesCarriedByElf = topThreeAmountOfCaloriesCarriedByElves.ElementAt(0);
+int sumOfTopThreeAmountOfCaloriesCarriedByElves = topThreeAmountOfCaloriesCarriedByElves.Sum(
+    amount => amount
+);
+
+// Part 1
 Console.WriteLine(highestAmountOfCaloriesCarriedByElf);
+
+// Part 2
+Console.WriteLine(sumOfTopThreeAmountOfCaloriesCarriedByElves);
