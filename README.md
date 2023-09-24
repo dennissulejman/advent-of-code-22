@@ -8,5 +8,5 @@ Day 1, Part 1: 71124 (C#, Python, Node.js, Go)
 <br>
 Day 1, Part 2: 204639 (C#, Go)
 <br>
-Day 2, Part 1: 15523 (C#)
+Day 2, Part 1: 15523 (C#, Go)
 </details>
