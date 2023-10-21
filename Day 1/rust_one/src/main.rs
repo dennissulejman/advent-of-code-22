@@ -6,7 +6,7 @@ fn main() {
     let mut current_elf_calories_carried = 0;
     let mut calories_carried = vec![];
 
-    let filename = "../../Input.txt";
+    let filename = "../Input.txt";
 
     if let Ok(lines) = read_lines(filename) {
         for line_result in lines {
