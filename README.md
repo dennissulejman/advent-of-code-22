@@ -15,4 +15,6 @@ Day 2, Part 2: 15702 (Rust)
 Day 3, Part 1: 8515 (Rust)
 <br>
 Day 3, Part 2: 2434 (Rust)
+<br>
+Day 4, Part 1: 466 (Rust)
 </details>
